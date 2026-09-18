@@ -1,6 +1,6 @@
 ---
-title: "Hello, World! 我的个人网站正式上线"
-date: 2026-09-18T23:30:00+09:00
+title: "Hello, World!"
+date: 2026-09-18T22:30:00+09:00
 draft: false
 ShowToc: true
 ---
