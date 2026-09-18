@@ -1,0 +1,9 @@
+baseURL = 'https://timiGao.github.io/'
+languageCode = 'zh-cn'
+title = '我的个人网站'
+theme = 'PaperMod'
+
+[params]
+  defaultTheme = "auto" # 自动切换明暗主题
+  ShowReadingTime = true
+  ShowShareButtons = true
