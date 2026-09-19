@@ -1,6 +1,6 @@
 baseURL = 'https://timiGao.github.io/'
 languageCode = 'zh-cn'
-title = '我的个人网站'
+title = "Timi's Site"
 theme = 'PaperMod'
 
 # ================= 顶部导航栏 (Menu) =================
@@ -27,15 +27,10 @@ theme = 'PaperMod'
   favicon = "/apple-touch-icon.png"
   apple_touch_icon = "/apple-touch-icon.png"
 
-# ================= 首页名片模式 (Profile Mode) =================
-[params.profileMode]
-  enabled = true
-  title = "Hi, 我是 Timi"
-  subtitle = "电子科技大学 CS 学生"
-  imageUrl = "/images/avatar.jpg"
-  imageWidth = 120
-  imageHeight = 120
-  imageTitle = "我的头像"
+# ================= 首页顶部信息 (Home Info) =================
+[params.homeInfoParams]
+  Title = "Hi, 我是 Timi"
+  Content = "电子科技大学 CS 学生"
 
 # ================= 社交媒体链接 (Social Icons) =================
 [[params.socialIcons]]
