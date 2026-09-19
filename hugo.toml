@@ -24,7 +24,7 @@ theme = 'PaperMod'
 
 # ================= 网站图标 (Favicon) =================
 [params.assets]
-  favicon = "/favicon.ico"
+  favicon = "/apple-touch-icon.png"
   apple_touch_icon = "/apple-touch-icon.png"
 
 # ================= 首页名片模式 (Profile Mode) =================
