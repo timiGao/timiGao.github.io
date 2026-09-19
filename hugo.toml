@@ -3,7 +3,45 @@ languageCode = 'zh-cn'
 title = '我的个人网站'
 theme = 'PaperMod'
 
+# ================= 顶部导航栏 (Menu) =================
+[[menu.main]]
+  identifier = "posts"
+  name = "文章"
+  url = "/posts/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "about"
+  name = "关于"
+  url = "/about/"
+  weight = 20
+
+# ================= 基础参数 (Params) =================
 [params]
-  defaultTheme = "auto" # 自动切换明暗主题
+  defaultTheme = "auto"
   ShowReadingTime = true
   ShowShareButtons = true
+
+# ================= 网站图标 (Favicon) =================
+[params.assets]
+  favicon = "/favicon.ico"
+  apple_touch_icon = "/apple-touch-icon.png"
+
+# ================= 首页名片模式 (Profile Mode) =================
+[params.profileMode]
+  enabled = true
+  title = "Hi, 我是 Timi"
+  subtitle = "电子科技大学 CS 学生"
+  imageUrl = "/images/avatar.jpg"
+  imageWidth = 120
+  imageHeight = 120
+  imageTitle = "我的头像"
+
+# ================= 社交媒体链接 (Social Icons) =================
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/timiGao"
+
+[[params.socialIcons]]
+  name = "email"
+  url = "mailto:timi.ghm@outlook.com"
