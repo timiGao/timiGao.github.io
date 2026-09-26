@@ -1,0 +1,32 @@
+{{- $socialMap := resources.Get "icons/social.yaml" | unmarshal -}}
+<div class="social-icons">
+{{- range $index, $value := . -}}
+    <!-- 防御性检测，彻底阻断 nil pointer 崩溃 -->
+    {{- if reflect.IsMap $value -}}
+        {{- $social_url := $value.url -}}
+        {{- $social_name := $value.name -}}
+        {{- $social_title := $value.title | default $social_name -}}
+        <a href="{{ $social_url }}" target="_blank" rel="noopener noreferrer me"
+            title="{{ $social_title }}">
+            
+            {{- /* 核心升级：优先去 assets/icons/ 寻找与 name 同名的独立 svg 文件 */ -}}
+            {{- $custom_path := printf "icons/%s.svg" (lower $social_name) -}}
+            {{- $custom_svg := resources.Get $custom_path -}}
+            
+            {{- if $custom_svg -}}
+                {{- /* 找到了独立的 svg 文件，直接渲染它的内容 */ -}}
+                {{ $custom_svg.Content | safeHTML }}
+            {{- else -}}
+                {{- /* 没找到独立文件，回退使用 PaperMod 官方自带的 yaml 图标库 */ -}}
+                {{- $icon := index $socialMap (lower $social_name) | default dict -}}
+                {{- with $icon -}}
+                    {{ . | safeHTML }}
+                {{- else -}}
+                    {{- warnf "No icon found for %s" $social_name -}}
+                {{- end -}}
+            {{- end -}}
+            
+        </a>
+    {{- end -}}
+{{- end -}}
+</div>
