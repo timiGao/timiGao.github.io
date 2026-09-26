@@ -1,9 +1,11 @@
 /* 1. 仅在列表页（主页、文章目录）应用背景图 */
 body.list {
-    background-image: url('/images/bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    /* 加上 !important 防止被暗色模式的纯色背景强行覆盖 */
+    background-image: url('/images/bg.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    background-color: transparent !important;
 }
 
 /* 仅给列表页的顶部导航栏加毛玻璃，文章页保持默认 */
@@ -27,6 +29,11 @@ body.list .header {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
     padding: var(--gap);
     margin-bottom: var(--gap);
+}
+
+/* 【修复：摘要小字颜色】强行使用 primary 变量，使其和标题颜色/明暗模式保持一致 */
+.post-entry .entry-content {
+    color: var(--primary) !important;
 }
 
 .post-entry:hover {
