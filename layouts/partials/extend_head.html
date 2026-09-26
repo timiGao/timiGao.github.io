@@ -127,23 +127,12 @@ details.toc a:focus {
                 return;
             }
 
-            const activate = (heading) => {
-                linksById.get(heading.id)?.classList.add("active");
+            const activate = (link) => {
+                toc.querySelectorAll("a.active").forEach((activeLink) => {
+                    activeLink.classList.remove("active");
+                });
+                link?.classList.add("active");
             };
-
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries
-                        .filter((entry) => entry.isIntersecting)
-                        .forEach((entry) => activate(entry.target));
-                },
-                {
-                    rootMargin: "-20% 0px -65% 0px",
-                    threshold: 0,
-                },
-            );
-
-            headings.forEach((heading) => observer.observe(heading));
 
             const markCurrentHeading = () => {
                 const readingLine = window.scrollY + window.innerHeight * 0.25;
@@ -155,13 +144,23 @@ details.toc a:focus {
                     .at(-1);
 
                 if (current) {
-                    activate(current);
+                    activate(linksById.get(current.id));
                 }
             };
 
+            const observer = new IntersectionObserver(
+                () => markCurrentHeading(),
+                {
+                    rootMargin: "-20% 0px -65% 0px",
+                    threshold: 0,
+                },
+            );
+
+            headings.forEach((heading) => observer.observe(heading));
+
             toc.querySelectorAll("a[href^=\"#\"]").forEach((link) => {
                 link.addEventListener("click", () => {
-                    link.classList.add("active");
+                    activate(link);
                 });
             });
 
