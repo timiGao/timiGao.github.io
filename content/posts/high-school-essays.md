@@ -1,6 +1,6 @@
 ---
 title: "随笔几篇（高中旧作存档）"
-date: 2026-09-26T17:15:06-07:00
+date: 2026-09-25T17:15:06-07:00
 draft: false
 ShowToc: true
 TocOpen: true
