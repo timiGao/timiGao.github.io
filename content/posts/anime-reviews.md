@@ -7,7 +7,7 @@ ShowToc: true
 
 ## 评测数据
 
-{{< figure src="/images/anime-scores.png" title="动画评测数据汇总" >}}
+{{< figure src="/images/anime-scores.png" title="动画评测数据汇总（点击图片查看高清原图）" link="/images/anime-scores.png" target="_blank" >}}
 
 ---
 
@@ -49,8 +49,7 @@ ShowToc: true
 *   **E - 烂作**：存在无法忍受的缺点，但保证了基本完成度。
 *   **F - 粪作**：粗制滥造，不知所云，毫无建树。
 
-> 💡 **破格原则**：标准仅作参考，若作品存在长板极佳者，可考虑破格升档。
-
+> *标准仅作参考，若作品存在长板极佳者，可考虑破格升档。*
 ---
 
 ## 附加指标说明

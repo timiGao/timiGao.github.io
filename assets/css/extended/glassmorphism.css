@@ -1,0 +1,49 @@
+/* 1. 全局背景图设置 */
+body {
+    background-image: url('/images/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* 让背景固定，滑动文章时背景不动 */
+}
+
+/* 为了防止背景图影响顶部导航栏的阅读，给 header 也加上极浅的毛玻璃 */
+.header {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+.dark .header {
+    background: rgba(29, 30, 32, 0.2) !important;
+}
+
+/* 2. 首页介绍框 (.first-entry) 与 文章卡片 (.post-entry) 的亮色毛玻璃 */
+.first-entry,
+.post-entry {
+    background: rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius); /* 使用主题默认的圆角 */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    padding: var(--gap); /* 撑开内部空间，形成卡片感 */
+    margin-bottom: var(--gap);
+}
+
+/* 卡片鼠标悬停的微调 */
+.post-entry:hover {
+    background: rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-2px); /* 悬停时轻微上浮 */
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+/* 3. 暗色模式 (Dark Mode) 下的毛玻璃参数调整 */
+.dark .first-entry,
+.dark .post-entry {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.dark .post-entry:hover {
+    background: rgba(0, 0, 0, 0.5) !important;
+}
