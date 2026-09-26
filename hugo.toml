@@ -2,6 +2,7 @@ baseURL = 'https://timiGao.github.io/'
 locale = 'zh-cn'
 title = "Timi's Site"
 theme = 'PaperMod'
+hasCJKLanguage = true  # <--- 新增这一行，开启中日韩语言精准字数统计
 
 # 开启 HTML 渲染权限（不仅能用来插入头像，也能让文章支持 <details> 折叠框）
 [markup.goldmark.renderer]
