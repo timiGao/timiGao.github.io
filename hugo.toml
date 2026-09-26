@@ -2,6 +2,7 @@ baseURL = 'https://timiGao.github.io/'
 locale = 'zh-cn'
 title = "Timi's Site"
 theme = 'PaperMod'
+languageCode = 'zh-cn'
 hasCJKLanguage = true  # <--- 新增这一行，开启中日韩语言精准字数统计
 
 # 开启 HTML 渲染权限（不仅能用来插入头像，也能让文章支持 <details> 折叠框）
@@ -69,3 +70,7 @@ hasCJKLanguage = true  # <--- 新增这一行，开启中日韩语言精准字�
 [[params.socialIcons]]
   name = "bangumi" # 这里改成了 bangumi，主题会自动去 assets/icons/ 下寻找 bangumi.svg
   url = "https://bgm.tv/user/timi"
+
+[[params.socialIcons]]
+name = "Steam"
+url = "https://steamcommunity.com/profiles/76561199885630445/"
