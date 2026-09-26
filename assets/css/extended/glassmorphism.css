@@ -1,70 +1,41 @@
-/* 1. 默认明亮模式变量 */
-:root {
-    --glass-bg: rgba(255, 255, 255, 0.65);
-    --glass-hover: rgba(255, 255, 255, 0.85);
-    --glass-border: rgba(255, 255, 255, 0.6);
-    --glass-header: rgba(255, 255, 255, 0.75);
-}
-
-/* 2. 手动点击月亮图标强制切换的暗色模式 */
-.dark {
-    --glass-bg: rgba(0, 0, 0, 0.8);
-    --glass-hover: rgba(0, 0, 0, 0.95);
-    --glass-border: rgba(255, 255, 255, 0.15);
-    --glass-header: rgba(0, 0, 0, 0.8);
-}
-
-/* 3. 核心修复：自动跟随电脑/手机系统的暗色模式 */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --glass-bg: rgba(0, 0, 0, 0.8);
-        --glass-hover: rgba(0, 0, 0, 0.95);
-        --glass-border: rgba(255, 255, 255, 0.15);
-        --glass-header: rgba(0, 0, 0, 0.8);
-    }
-    /* 若系统是暗色，但用户手动点击太阳切回亮色 */
-    .light {
-        --glass-bg: rgba(255, 255, 255, 0.65);
-        --glass-hover: rgba(255, 255, 255, 0.85);
-        --glass-border: rgba(255, 255, 255, 0.6);
-        --glass-header: rgba(255, 255, 255, 0.75);
-    }
-}
-
-/* 4. 应用样式到具体元素 */
+/* 1. 列表页背景 */
 body.list {
     background-image: url('/images/bg.jpg') !important;
     background-size: cover !important;
     background-position: center !important;
     background-attachment: fixed !important;
-    background-color: transparent !important;
+    background-color: var(--theme) !important;
 }
 
+/* 2. 导航栏毛玻璃：直接提取主题原生的 var(--theme) 并混入 25% 透明度 */
 body.list .header {
-    background: var(--glass-header) !important;
+    background: color-mix(in srgb, var(--theme) 75%, transparent) !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
 
+/* 3. 卡片毛玻璃：提取主题原生的卡片底色 var(--entry) 并混入 25% 透明度 */
 .first-entry,
 .post-entry {
-    background: var(--glass-bg) !important;
+    background: color-mix(in srgb, var(--entry) 75%, transparent) !important;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--glass-border) !important;
+    /* 边框提取原生的字体颜色 var(--primary) 并混入 85% 透明度，实现白天黑边，晚上白边 */
+    border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent) !important;
     border-radius: var(--radius);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
     padding: var(--gap);
     margin-bottom: var(--gap);
 }
 
+/* 卡片悬停：浓度加深到 90% */
 .post-entry:hover {
-    background: var(--glass-hover) !important;
+    background: color-mix(in srgb, var(--entry) 90%, transparent) !important;
     transform: translateY(-2px);
     transition: transform 0.2s ease, background 0.2s ease;
 }
 
-/* 穿透修复摘要及日期小字颜色 */
+/* 4. 穿透修复摘要及日期小字颜色 */
 .post-entry .entry-content,
 .post-entry .entry-content p,
 .post-entry .entry-footer,
