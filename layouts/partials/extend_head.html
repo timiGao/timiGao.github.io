@@ -1,0 +1,86 @@
+<style>
+/* =========================================
+   1. color-mix 毛玻璃（绝美自适应颜色）
+   ========================================= */
+body.list {
+    background-image: url('/images/bg.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    background-color: var(--theme) !important;
+}
+
+body.list .header {
+    background: color-mix(in srgb, var(--theme) 75%, transparent) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.first-entry,
+.post-entry {
+    background: color-mix(in srgb, var(--entry) 75%, transparent) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent) !important;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+    padding: var(--gap);
+    margin-bottom: var(--gap);
+}
+
+.post-entry:hover {
+    background: color-mix(in srgb, var(--entry) 90%, transparent) !important;
+    transform: translateY(-2px);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.post-entry .entry-content,
+.post-entry .entry-content p,
+.post-entry .entry-footer,
+.post-entry .entry-footer span {
+    color: var(--primary) !important;
+}
+
+/* =========================================
+   2. 侧边栏悬浮目录 (宽屏/电脑端生效)
+   ========================================= */
+@media screen and (min-width: 1280px) {
+    .toc {
+        position: fixed;
+        top: 100px;
+        left: calc(50% + 380px); 
+        width: 280px;
+        max-height: calc(100vh - 140px);
+        overflow-y: auto;
+        
+        /* 同步使用 color-mix 完美跟随明暗模式 */
+        background: color-mix(in srgb, var(--entry) 75%, transparent) !important;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent) !important;
+        border-radius: var(--radius);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+        padding: var(--gap);
+        z-index: 99;
+    }
+
+    .toc .inner { margin: 0; padding: 0; }
+    
+    .toc ul {
+        font-size: 0.85em;
+        padding-left: 15px; 
+        line-height: 1.8;
+    }
+
+    .toc a:hover {
+        color: var(--primary);
+        text-decoration: underline;
+    }
+
+    .toc::-webkit-scrollbar { width: 4px; }
+    .toc::-webkit-scrollbar-thumb {
+        background: color-mix(in srgb, var(--primary) 20%, transparent);
+        border-radius: 4px;
+    }
+}
+</style>
