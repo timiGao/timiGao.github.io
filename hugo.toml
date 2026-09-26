@@ -62,5 +62,5 @@ theme = 'PaperMod'
   url = "https://www.douban.com/people/278279045"
 
 [[params.socialIcons]]
-  name = "link" # 暂用通用链接图标替代 Bangumi
+  name = "bangumi" # 这里改成了 bangumi，主题会自动去 assets/icons/ 下寻找 bangumi.svg
   url = "https://bgm.tv/user/timi"
