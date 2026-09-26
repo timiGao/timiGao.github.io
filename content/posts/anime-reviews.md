@@ -1,6 +1,7 @@
 ---
-title: "动画个人评测数据"
-date: 2026-09-26T14:10:00+08:00
+title: "📌 动画个人评测数据"
+date: 2026-09-26T14:15:00+08:00
+weight: 1
 draft: false
 ShowToc: true
 ---
