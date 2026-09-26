@@ -26,6 +26,8 @@ hasCJKLanguage = true  # <--- 新增这一行，开启中日韩语言精准字�
   defaultTheme = "auto"
   ShowReadingTime = true
   ShowShareButtons = false
+  ShowToc = true   # 全局默认给所有文章开启目录功能（以后写文章头部甚至可以不写 ShowToc 了）
+  TocOpen = true   # 全局默认让目录保持展开状态
 
 # ================= 网站图标 (Favicon) =================
 [params.assets]
