@@ -44,6 +44,8 @@ body.list .header {
 /* =========================================
    2. PaperMod ToC：点击项文字高亮
    ========================================= */
+details.toc a.active,
+details.toc a.active:hover,
 details.toc a:focus {
     color: #3b82f6 !important;
 }
@@ -101,3 +103,76 @@ details.toc a:focus {
     }
 }
 </style>
+
+<script>
+    (() => {
+        const initTocTracking = () => {
+            const toc = document.querySelector("details.toc");
+            const content = document.querySelector(".post-content");
+
+            if (!toc || !content || !("IntersectionObserver" in window)) {
+                return;
+            }
+
+            const linksById = new Map(
+                [...toc.querySelectorAll('a[href^="#"]')].map((link) => [
+                    decodeURIComponent(link.getAttribute("href").slice(1)),
+                    link,
+                ]),
+            );
+            const headings = [...content.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]")]
+                .filter((heading) => linksById.has(heading.id));
+
+            if (!headings.length) {
+                return;
+            }
+
+            const activate = (heading) => {
+                linksById.get(heading.id)?.classList.add("active");
+            };
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries
+                        .filter((entry) => entry.isIntersecting)
+                        .forEach((entry) => activate(entry.target));
+                },
+                {
+                    rootMargin: "-20% 0px -65% 0px",
+                    threshold: 0,
+                },
+            );
+
+            headings.forEach((heading) => observer.observe(heading));
+
+            const markCurrentHeading = () => {
+                const readingLine = window.scrollY + window.innerHeight * 0.25;
+                const current = headings
+                    .filter(
+                        (heading) =>
+                            heading.getBoundingClientRect().top + window.scrollY <= readingLine,
+                    )
+                    .at(-1);
+
+                if (current) {
+                    activate(current);
+                }
+            };
+
+            toc.querySelectorAll("a[href^=\"#\"]").forEach((link) => {
+                link.addEventListener("click", () => {
+                    link.classList.add("active");
+                });
+            });
+
+            markCurrentHeading();
+            window.addEventListener("scroll", markCurrentHeading, { passive: true });
+        };
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initTocTracking, { once: true });
+        } else {
+            initTocTracking();
+        }
+    })();
+</script>
