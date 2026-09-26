@@ -1,0 +1,19 @@
+<div class="social-icons">
+{{- range site.Params.socialIcons }}
+    {{- $isLocal := not (urls.Parse .url).Scheme }}
+    <a href="{{ if $isLocal }}{{ .url | absLangURL }}{{ else }}{{ .url }}{{ end }}" target="_blank" rel="noopener noreferrer me"
+        title="{{ .title | default (.name | title) }}">
+        {{- if eq (lower .name) "bangumi" -}}
+        <!-- 完美的实心 Bangumi 小电视图标 -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9.5 8.5 L10.8 6.8 L6.2 2.6 A1 1 0 0 1 7.6 1.2 L12 5.2 L16.4 1.2 A1 1 0 0 1 17.8 2.6 L13.2 6.8 L14.5 8.5 Z" />
+            <rect x="2.5" y="8.5" width="19" height="11.5" rx="3.5" />
+            <path d="M9.5 19 L8 23.2 C7.8 23.6 8.3 23.9 8.7 23.6 L13.5 19 Z" />
+        </svg>
+        {{- else -}}
+        {{- /* 绝对正确的原生渲染回调，保证 Github/Steam 等图标正常显示 */ -}}
+        {{- partial "svg.html" . -}}
+        {{- end -}}
+    </a>
+{{- end }}
+</div>
