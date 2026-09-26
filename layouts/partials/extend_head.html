@@ -42,14 +42,15 @@ body.list .header {
 }
 
 /* =========================================
-   2. 目录交互：当前阅读进度/点击项高亮
+   2. PaperMod ToC：当前项高亮
    ========================================= */
-.toc a {
+details.toc a {
     transition: color 0.2s ease, background-color 0.2s ease,
         font-weight 0.2s ease, padding 0.2s ease;
 }
 
-.toc a.active {
+details.toc a.active,
+details.toc a:focus-visible {
     color: #3b82f6 !important;
     font-weight: 800 !important;
     background: rgba(59, 130, 246, 0.15) !important;
@@ -58,17 +59,17 @@ body.list .header {
 }
 
 /* =========================================
-   3. 侧边栏悬浮目录（宽屏/电脑端生效）
+   3. PaperMod ToC：宽屏右侧悬浮
    ========================================= */
 @media screen and (min-width: 1280px) {
-    .toc {
+    details.toc {
         position: fixed;
         top: 100px;
         left: calc(50% + 380px);
         width: 280px;
+        box-sizing: border-box;
         max-height: calc(100vh - 140px);
         overflow-y: auto;
-
         background: color-mix(in srgb, var(--entry) 75%, transparent) !important;
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
@@ -79,31 +80,31 @@ body.list .header {
         z-index: 99;
     }
 
-    .toc .inner {
+    details.toc .inner {
         margin: 0;
         padding: 0;
     }
 
-    .toc ul {
+    details.toc ul {
         font-size: 0.85em;
         padding-left: 15px;
         line-height: 1.8;
     }
 
-    .toc a:hover {
+    details.toc a:hover {
         color: var(--primary);
         text-decoration: underline;
     }
 
-    .toc::-webkit-scrollbar {
+    details.toc::-webkit-scrollbar {
         width: 4px;
     }
 
-    .toc::-webkit-scrollbar-track {
+    details.toc::-webkit-scrollbar-track {
         background: transparent;
     }
 
-    .toc::-webkit-scrollbar-thumb {
+    details.toc::-webkit-scrollbar-thumb {
         background: color-mix(in srgb, var(--primary) 20%, transparent);
         border-radius: 4px;
     }
