@@ -1,4 +1,22 @@
-/* 1. 仅在列表页（主页、文章目录）应用背景图 */
+/* 1. 利用 CSS 变量彻底解决明暗模式切换的玄学问题 */
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.65);      /* 白天卡片底色 */
+    --glass-hover: rgba(255, 255, 255, 0.85);   /* 白天鼠标悬停底色 */
+    --glass-border: rgba(255, 255, 255, 0.6);   /* 白天卡片边框 */
+    --glass-header: rgba(255, 255, 255, 0.75);  /* 白天导航栏底色 */
+}
+
+/* 无论主题把夜间模式的 class 挂在 html 还是 body 上，全部强制拦截 */
+.dark,
+html.dark,
+body.dark {
+    --glass-bg: rgba(15, 15, 15, 0.85);         /* 黑夜卡片底色（加深浓度到0.85） */
+    --glass-hover: rgba(0, 0, 0, 0.95);         /* 黑夜鼠标悬停底色 */
+    --glass-border: rgba(255, 255, 255, 0.15);  /* 黑夜卡片边框 */
+    --glass-header: rgba(15, 15, 15, 0.85);     /* 黑夜导航栏底色 */
+}
+
+/* 2. 背景图依然仅限列表页（主页、文章目录） */
 body.list {
     background-image: url('/images/bg.jpg') !important;
     background-size: cover !important;
@@ -7,53 +25,35 @@ body.list {
     background-color: transparent !important;
 }
 
-/* 顶部导航栏毛玻璃（同步加深浓度） */
+/* 3. 应用变量到毛玻璃组件 */
 body.list .header {
-    background: rgba(255, 255, 255, 0.75) !important;
+    background: var(--glass-header) !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
-.dark body.list .header {
-    background: rgba(0, 0, 0, 0.75) !important;
-}
 
-/* 2. 首页介绍框 (.first-entry) 与 文章卡片 (.post-entry) 的毛玻璃 */
 .first-entry,
 .post-entry {
-    background: rgba(255, 255, 255, 0.65) !important; /* 白天更白：透明度提至 0.65 */
+    background: var(--glass-bg) !important;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--glass-border) !important;
     border-radius: var(--radius);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
     padding: var(--gap);
     margin-bottom: var(--gap);
 }
 
-/* 【彻底修复：摘要及日期小字颜色】直接穿透到子元素 <p> 标签和 footer 层级 */
+.post-entry:hover {
+    background: var(--glass-hover) !important;
+    transform: translateY(-2px);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+/* 4. 穿透修复摘要及日期小字颜色 */
 .post-entry .entry-content,
 .post-entry .entry-content p,
 .post-entry .entry-footer,
 .post-entry .entry-footer span {
     color: var(--primary) !important;
-}
-
-/* 白天模式鼠标悬停状态 */
-.post-entry:hover {
-    background: rgba(255, 255, 255, 0.85) !important;
-    transform: translateY(-2px);
-    transition: transform 0.2s ease, background 0.2s ease;
-}
-
-/* 3. 暗色模式下的毛玻璃参数调整 */
-.dark .first-entry,
-.dark .post-entry {
-    background: rgba(0, 0, 0, 0.7) !important; /* 晚上更黑：透明度提至 0.7 */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-}
-
-/* 暗色模式鼠标悬停状态 */
-.dark .post-entry:hover {
-    background: rgba(0, 0, 0, 0.85) !important;
 }
