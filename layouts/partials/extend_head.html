@@ -42,7 +42,16 @@ body.list .header {
 }
 
 /* =========================================
-   2. 侧边栏悬浮目录 (宽屏/电脑端生效)
+   2. 目录交互：当前阅读进度/点击项高亮
+   ========================================= */
+.toc a.active {
+    color: #3b82f6 !important; /* 经典亮蓝色 */
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+/* =========================================
+   3. 侧边栏悬浮目录 (宽屏/电脑端生效)
    ========================================= */
 @media screen and (min-width: 1280px) {
     .toc {
@@ -53,7 +62,6 @@ body.list .header {
         max-height: calc(100vh - 140px);
         overflow-y: auto;
         
-        /* 同步使用 color-mix 完美跟随明暗模式 */
         background: color-mix(in srgb, var(--entry) 75%, transparent) !important;
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
