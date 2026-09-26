@@ -42,12 +42,15 @@ body.list .header {
 }
 
 /* =========================================
-   2. 目录交互：当前阅读进度/点击项高亮
+   2. 目录交互：当前阅读进度/点击项高亮增强版
    ========================================= */
 .toc a.active {
-    color: #3b82f6 !important; /* 经典亮蓝色 */
-    font-weight: 600;
-    transition: color 0.2s ease;
+    color: #3b82f6 !important;           /* 鲜艳的亮蓝色 */
+    font-weight: 800 !important;         /* 显著加粗 */
+    background: rgba(59, 130, 246, 0.15) !important; /* 浅蓝色背景块 */
+    padding: 2px 6px !important;         /* 背景块撑开内边距 */
+    border-radius: 4px !important;       /* 圆角 */
+    transition: all 0.2s ease;
 }
 
 /* =========================================
