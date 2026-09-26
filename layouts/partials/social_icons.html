@@ -1,19 +1,32 @@
+{{- $socialMap := resources.Get "icons/social.yaml" | unmarshal -}}
 <div class="social-icons">
-{{- range site.Params.socialIcons }}
-    {{- $isLocal := not (urls.Parse .url).Scheme }}
-    <a href="{{ if $isLocal }}{{ .url | absLangURL }}{{ else }}{{ .url }}{{ end }}" target="_blank" rel="noopener noreferrer me"
-        title="{{ .title | default (.name | title) }}">
-        {{- if eq .name "bangumi" -}}
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-          <polyline points="17 2 12 7 7 2"></polyline>
-          <circle cx="8" cy="14" r="1"></circle>
-          <circle cx="16" cy="14" r="1"></circle>
-          <path d="M10 17h4"></path>
-        </svg>
+{{- range $index, $value := . -}}
+    {{- $social_url := $value.url -}}
+    {{- $social_name := $value.name -}}
+    {{- $social_title := $value.title | default $value.name -}}
+    <a href="{{ $social_url }}" target="_blank" rel="noopener noreferrer me"
+        title="{{ $social_title }}">
+        {{- if eq (lower $social_name) "bangumi" -}}
+            <!-- 完美重绘版 Bangumi 矢量图标 -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <!-- 带有梯形底座和圆润天线尖端的 V 型天线 -->
+                <path d="M9.5 8.5 L10.8 6.8 L6.2 2.6 A1 1 0 0 1 7.6 1.2 L12 5.2 L16.4 1.2 A1 1 0 0 1 17.8 2.6 L13.2 6.8 L14.5 8.5 Z" />
+                <!-- 核心机身：圆角矩形 -->
+                <rect x="2.5" y="8.5" width="19" height="11.5" rx="3.5" />
+                <!-- 底部的小气泡尾巴，尖端做了微小的圆角平滑处理 -->
+                <path d="M9.5 19 L8 23.2 C7.8 23.6 8.3 23.9 8.7 23.6 L13.5 19 Z" />
+            </svg>
         {{- else -}}
-        {{- partial "svg.html" . -}}
+            {{- $icon := dict -}}
+            {{- if reflect.IsMap $value -}}
+                {{- $icon = index $socialMap (lower $social_name) | default dict -}}
+            {{- end -}}
+            {{- with $icon -}}
+                {{ . | safeHTML }}
+            {{- else -}}
+                {{- warnf "No icon found for %s" $social_name -}}
+            {{- end -}}
         {{- end -}}
     </a>
-{{- end }}
+{{- end -}}
 </div>
