@@ -1,22 +1,37 @@
-/* 1. 利用 CSS 变量彻底解决明暗模式切换的玄学问题 */
+/* 1. 默认明亮模式变量 */
 :root {
-    --glass-bg: rgba(255, 255, 255, 0.65);      /* 白天卡片底色 */
-    --glass-hover: rgba(255, 255, 255, 0.85);   /* 白天鼠标悬停底色 */
-    --glass-border: rgba(255, 255, 255, 0.6);   /* 白天卡片边框 */
-    --glass-header: rgba(255, 255, 255, 0.75);  /* 白天导航栏底色 */
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --glass-hover: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-header: rgba(255, 255, 255, 0.75);
 }
 
-/* 无论主题把夜间模式的 class 挂在 html 还是 body 上，全部强制拦截 */
-.dark,
-html.dark,
-body.dark {
-    --glass-bg: rgba(15, 15, 15, 0.85);         /* 黑夜卡片底色（加深浓度到0.85） */
-    --glass-hover: rgba(0, 0, 0, 0.95);         /* 黑夜鼠标悬停底色 */
-    --glass-border: rgba(255, 255, 255, 0.15);  /* 黑夜卡片边框 */
-    --glass-header: rgba(15, 15, 15, 0.85);     /* 黑夜导航栏底色 */
+/* 2. 手动点击月亮图标强制切换的暗色模式 */
+.dark {
+    --glass-bg: rgba(0, 0, 0, 0.8);
+    --glass-hover: rgba(0, 0, 0, 0.95);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-header: rgba(0, 0, 0, 0.8);
 }
 
-/* 2. 背景图依然仅限列表页（主页、文章目录） */
+/* 3. 核心修复：自动跟随电脑/手机系统的暗色模式 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --glass-bg: rgba(0, 0, 0, 0.8);
+        --glass-hover: rgba(0, 0, 0, 0.95);
+        --glass-border: rgba(255, 255, 255, 0.15);
+        --glass-header: rgba(0, 0, 0, 0.8);
+    }
+    /* 若系统是暗色，但用户手动点击太阳切回亮色 */
+    .light {
+        --glass-bg: rgba(255, 255, 255, 0.65);
+        --glass-hover: rgba(255, 255, 255, 0.85);
+        --glass-border: rgba(255, 255, 255, 0.6);
+        --glass-header: rgba(255, 255, 255, 0.75);
+    }
+}
+
+/* 4. 应用样式到具体元素 */
 body.list {
     background-image: url('/images/bg.jpg') !important;
     background-size: cover !important;
@@ -25,7 +40,6 @@ body.list {
     background-color: transparent !important;
 }
 
-/* 3. 应用变量到毛玻璃组件 */
 body.list .header {
     background: var(--glass-header) !important;
     backdrop-filter: blur(10px);
@@ -39,7 +53,7 @@ body.list .header {
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border) !important;
     border-radius: var(--radius);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     padding: var(--gap);
     margin-bottom: var(--gap);
 }
@@ -50,7 +64,7 @@ body.list .header {
     transition: transform 0.2s ease, background 0.2s ease;
 }
 
-/* 4. 穿透修复摘要及日期小字颜色 */
+/* 穿透修复摘要及日期小字颜色 */
 .post-entry .entry-content,
 .post-entry .entry-content p,
 .post-entry .entry-footer,
