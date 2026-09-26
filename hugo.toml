@@ -4,7 +4,7 @@ title = "Timi's Site"
 theme = 'PaperMod'
 defaultContentLanguage = "zh"
 languageCode = 'zh'
-hasCJKLanguage = true  # <--- 开启中日韩语言精准字数统计
+hasCJKLanguage = true  # <--- 新增这一行，开启中日韩语言精准字数统计
 
 # 开启 HTML 渲染权限（不仅能用来插入头像，也能让文章支持 <details> 折叠框）
 [markup.goldmark.renderer]
@@ -28,20 +28,8 @@ hasCJKLanguage = true  # <--- 开启中日韩语言精准字数统计
   defaultTheme = "auto"
   ShowReadingTime = true
   ShowShareButtons = false
-  ShowToc = true   # 全局默认给所有文章开启目录功能
+  ShowToc = true   # 全局默认给所有文章开启目录功能（以后写文章头部甚至可以不写 ShowToc 了）
   TocOpen = true   # 全局默认让目录保持展开状态
-
-  # ================= 社交媒体链接 =================
-  # 必须写在 params 之下，并在 assets 等子节点之上
-  socialIcons = [
-    { name = "github", url = "https://github.com/timiGao" },
-    { name = "email", url = "mailto:timi.ghm@outlook.com" },
-    { name = "bilibili", url = "https://space.bilibili.com/402601923" },
-    { name = "zhihu", url = "https://www.zhihu.com/people/ti-mi-19-68" },
-    { name = "douban", url = "https://www.douban.com/people/278279045" },
-    { name = "bangumi", url = "https://bgm.tv/user/timi" },
-    { name = "Steam", url = "https://steamcommunity.com/profiles/76561199885630445/" }
-  ]
 
 # ================= 网站图标 (Favicon) =================
 [params.assets]
@@ -58,3 +46,32 @@ hasCJKLanguage = true  # <--- 开启中日韩语言精准字数统计
   </style>
   <img src="/images/avatar.jpg" alt="avatar" width="90" style="border-radius: 50%; margin-bottom: 15px; display: block; margin-left: auto; margin-right: auto;">
   """
+
+# ================= 社交媒体链接 (Social Icons) =================
+[[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/timiGao"
+
+[[params.socialIcons]]
+  name = "email"
+  url = "mailto:timi.ghm@outlook.com"
+
+[[params.socialIcons]]
+  name = "bilibili"
+  url = "https://space.bilibili.com/402601923"
+
+[[params.socialIcons]]
+  name = "zhihu"
+  url = "https://www.zhihu.com/people/ti-mi-19-68"
+
+[[params.socialIcons]]
+  name = "douban"
+  url = "https://www.douban.com/people/278279045"
+
+[[params.socialIcons]]
+  name = "bangumi" # 这里改成了 bangumi，主题会自动去 assets/icons/ 下寻找 bangumi.svg
+  url = "https://bgm.tv/user/timi"
+
+[[params.socialIcons]]
+name = "Steam"
+url = "https://steamcommunity.com/profiles/76561199885630445/"
