@@ -24,7 +24,7 @@ theme = 'PaperMod'
 [params]
   defaultTheme = "auto"
   ShowReadingTime = true
-  ShowShareButtons = true
+  ShowShareButtons = false
 
 # ================= 网站图标 (Favicon) =================
 [params.assets]
@@ -34,10 +34,12 @@ theme = 'PaperMod'
 # ================= 首页顶部信息 (Home Info) =================
 [params.homeInfoParams]
   Title = "Hi, 我是 Timi"
-  # 利用 HTML 标签强行注入头像，设定宽度为 90px 且裁切为圆形 (border-radius: 50%)
   Content = """
-  <img src="/images/avatar.jpg" alt="avatar" width="90" style="border-radius: 50%; margin-bottom: 15px;">
-  <br>电子科技大学 CS 学生
+  <style>
+    .home-info { text-align: center; }
+    .home-info .social-icons { justify-content: center; }
+  </style>
+  <img src="/images/avatar.jpg" alt="avatar" width="90" style="border-radius: 50%; margin-bottom: 15px; display: block; margin-left: auto; margin-right: auto;">
   """
 
 # ================= 社交媒体链接 (Social Icons) =================
