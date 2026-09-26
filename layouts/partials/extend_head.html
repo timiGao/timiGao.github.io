@@ -44,13 +44,13 @@ body.list .header {
 /* =========================================
    2. PaperMod ToC：当前项高亮
    ========================================= */
-details.toc a {
+#toc a {
     transition: color 0.2s ease, background-color 0.2s ease,
         font-weight 0.2s ease, padding 0.2s ease;
 }
 
-details.toc a.active,
-details.toc a:focus-visible {
+#toc a.active,
+#toc a:focus-visible {
     color: #3b82f6 !important;
     font-weight: 800 !important;
     background: rgba(59, 130, 246, 0.15) !important;
@@ -62,7 +62,7 @@ details.toc a:focus-visible {
    3. PaperMod ToC：宽屏右侧悬浮
    ========================================= */
 @media screen and (min-width: 1280px) {
-    details.toc {
+    #toc {
         position: fixed;
         top: 100px;
         left: calc(50% + 380px);
@@ -80,31 +80,31 @@ details.toc a:focus-visible {
         z-index: 99;
     }
 
-    details.toc .inner {
+    #toc .inner {
         margin: 0;
         padding: 0;
     }
 
-    details.toc ul {
+    #toc ul {
         font-size: 0.85em;
         padding-left: 15px;
         line-height: 1.8;
     }
 
-    details.toc a:hover {
+    #toc a:hover {
         color: var(--primary);
         text-decoration: underline;
     }
 
-    details.toc::-webkit-scrollbar {
+    #toc::-webkit-scrollbar {
         width: 4px;
     }
 
-    details.toc::-webkit-scrollbar-track {
+    #toc::-webkit-scrollbar-track {
         background: transparent;
     }
 
-    details.toc::-webkit-scrollbar-thumb {
+    #toc::-webkit-scrollbar-thumb {
         background: color-mix(in srgb, var(--primary) 20%, transparent);
         border-radius: 4px;
     }
