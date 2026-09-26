@@ -1,6 +1,5 @@
 /* 1. 仅在列表页（主页、文章目录）应用背景图 */
 body.list {
-    /* 加上 !important 防止被暗色模式的纯色背景强行覆盖 */
     background-image: url('/images/bg.jpg') !important;
     background-size: cover !important;
     background-position: center !important;
@@ -8,36 +7,40 @@ body.list {
     background-color: transparent !important;
 }
 
-/* 仅给列表页的顶部导航栏加毛玻璃，文章页保持默认 */
+/* 顶部导航栏毛玻璃（同步加深浓度） */
 body.list .header {
-    background: rgba(255, 255, 255, 0.1) !important;
+    background: rgba(255, 255, 255, 0.75) !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
 .dark body.list .header {
-    background: rgba(29, 30, 32, 0.2) !important;
+    background: rgba(0, 0, 0, 0.75) !important;
 }
 
 /* 2. 首页介绍框 (.first-entry) 与 文章卡片 (.post-entry) 的毛玻璃 */
 .first-entry,
 .post-entry {
-    background: rgba(255, 255, 255, 0.25) !important;
+    background: rgba(255, 255, 255, 0.65) !important; /* 白天更白：透明度提至 0.65 */
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: var(--radius);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
     padding: var(--gap);
     margin-bottom: var(--gap);
 }
 
-/* 【修复：摘要小字颜色】强行使用 primary 变量，使其和标题颜色/明暗模式保持一致 */
-.post-entry .entry-content {
+/* 【彻底修复：摘要及日期小字颜色】直接穿透到子元素 <p> 标签和 footer 层级 */
+.post-entry .entry-content,
+.post-entry .entry-content p,
+.post-entry .entry-footer,
+.post-entry .entry-footer span {
     color: var(--primary) !important;
 }
 
+/* 白天模式鼠标悬停状态 */
 .post-entry:hover {
-    background: rgba(255, 255, 255, 0.4) !important;
+    background: rgba(255, 255, 255, 0.85) !important;
     transform: translateY(-2px);
     transition: transform 0.2s ease, background 0.2s ease;
 }
@@ -45,11 +48,12 @@ body.list .header {
 /* 3. 暗色模式下的毛玻璃参数调整 */
 .dark .first-entry,
 .dark .post-entry {
-    background: rgba(0, 0, 0, 0.3) !important;
+    background: rgba(0, 0, 0, 0.7) !important; /* 晚上更黑：透明度提至 0.7 */
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
 }
 
+/* 暗色模式鼠标悬停状态 */
 .dark .post-entry:hover {
-    background: rgba(0, 0, 0, 0.5) !important;
+    background: rgba(0, 0, 0, 0.85) !important;
 }
