@@ -1,0 +1,52 @@
+/* =========================================
+   侧边栏悬浮目录 (仅在宽屏/电脑端生效)
+   ========================================= */
+@media screen and (min-width: 1280px) {
+    .toc {
+        position: fixed;
+        top: 100px;
+        /* 锚定计算：屏幕正中心(50%) + 文章主体一半的宽度(约360px) + 间距(20px) */
+        left: calc(50% + 380px); 
+        width: 280px;
+        max-height: calc(100vh - 140px);
+        overflow-y: auto;
+        
+        /* 延续之前调配的完美卡片/毛玻璃质感 */
+        background: color-mix(in srgb, var(--entry) 75%, transparent) !important;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid color-mix(in srgb, var(--primary) 15%, transparent) !important;
+        border-radius: var(--radius);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+        padding: var(--gap);
+        z-index: 99;
+    }
+
+    /* 去除原生模式下的多余边距 */
+    .toc .inner {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 优化侧边栏文字大小和行高，防止长标题换行拥挤 */
+    .toc ul {
+        font-size: 0.85em;
+        padding-left: 15px; 
+        line-height: 1.8;
+    }
+
+    /* 当鼠标悬浮在目录链接上时的交互反馈 */
+    .toc a:hover {
+        color: var(--primary);
+        text-decoration: underline;
+    }
+
+    /* 定制侧边栏内部的细长优雅滚动条 */
+    .toc::-webkit-scrollbar {
+        width: 4px;
+    }
+    .toc::-webkit-scrollbar-thumb {
+        background: color-mix(in srgb, var(--primary) 20%, transparent);
+        border-radius: 4px;
+    }
+}
